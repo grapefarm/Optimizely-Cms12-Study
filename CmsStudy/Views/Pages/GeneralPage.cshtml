@@ -1,3 +1,3 @@
-﻿@model GeneralPage
-@Html.PropertyFor(x => x.Body)
-@Html.PropertyFor(x => x.BottomContentArea)
+﻿@model PageViewModel<GeneralPage>
+@Html.PropertyFor(x => x.Page.Body)
+@Html.PropertyFor(x => x.Page.BottomContentArea)
