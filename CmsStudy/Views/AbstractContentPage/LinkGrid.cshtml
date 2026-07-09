@@ -1,0 +1,4 @@
+﻿@model AbstractContentPage
+
+<a href="@Url.ContentUrl(Model.ContentLink)">@Model.Name</a>
+@Html.PropertyFor(x => x.MetaDescription)

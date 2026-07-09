@@ -1,0 +1,19 @@
+﻿@model SectionMediaBlock
+
+<h1>@Html.PropertyFor(x => x.HeadLine)</h1>
+@Html.PropertyFor( x => x.Body)
+
+
+@* 確保 Model.Image 不為空才渲染圖片區域，避免破版 *@
+@if (Model.Image != null)
+{
+    <figure class="image-full">
+        <picture>
+            @* 這裡使用 @Url.ContentUrl 將 ContentReference 轉換為真實路徑 *@
+            <source srcset="@Url.ContentUrl(Model.Image)" media="(min-width: 768px)">
+
+            @* 這是當寬度小於 768px 時顯示的圖片，你可以依需求調整 *@
+            <img src="@Url.ContentUrl(Model.Image)" alt="@Model.HeadLine" />
+        </picture>
+    </figure>
+}
