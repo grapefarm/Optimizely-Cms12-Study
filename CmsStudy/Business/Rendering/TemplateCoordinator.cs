@@ -13,16 +13,20 @@ namespace CmsStudy.Business.Rendering
         {
             RegisterBlock<SectionMediaBlock>(viewTemplateModelRegistrator);
             RegisterBlock<LinkGridBlock>(viewTemplateModelRegistrator);
+            RegisterPartial<AbstractContentPage>(viewTemplateModelRegistrator, "ArticlePartial");
+            RegisterPartial<AbstractContentPage>(viewTemplateModelRegistrator, "LinkGrid");
+        }
 
-
-            viewTemplateModelRegistrator.Add(typeof(AbstractContentPage), new EPiServer.DataAbstraction.TemplateModel
+        private void RegisterPartial<T>(TemplateModelCollection viewTemplateModelRegistrator, string tagName) where T : AbstractContentPage 
+        {
+            viewTemplateModelRegistrator.Add(typeof(T), new EPiServer.DataAbstraction.TemplateModel
             {
-                Name = "AbstractContentPage-LinkGrid",
+                Name = $"{typeof(T).Name}-{tagName}",
                 AvailableWithoutTag = false,
-                Tags = new[] { "LinkGrid"},
-                Inherit=true,
+                Tags = new[] { tagName },
+                Inherit = true,
                 TemplateTypeCategory = EPiServer.Framework.Web.TemplateTypeCategories.MvcPartialView,
-                Path = "~/Views/AbstractContentPage/LinkGrid.cshtml"
+                Path = $"~/Views/{typeof(T).Name}/{tagName}.cshtml"
             });
         }
 

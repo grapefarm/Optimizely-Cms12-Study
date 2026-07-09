@@ -1,2 +1,6 @@
-﻿@model AbstractContentPage
-
+﻿@model PageViewModel
+<partial name="~/Views/Shared/_HeaderIncludes.cshtml" model="Model"/>
+<body>
+    @RenderBody()
+    <script src"/static/js/main.js"></script>
+</body>

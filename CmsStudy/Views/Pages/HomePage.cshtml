@@ -1,3 +1,14 @@
-﻿@model Homepage
+﻿@model HomepageViewModel
 
-@Model.Name
+<h1>
+    @Model.Page.Name
+</h1>
+
+@foreach (var page in Model.RelatedContent)
+{
+    <div>
+        @{
+            Html.RenderContentData(page, false, "ArticlePartial");
+        }
+    </div>
+}
